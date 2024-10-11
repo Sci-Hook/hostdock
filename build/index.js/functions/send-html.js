@@ -38,16 +38,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.send_html = send_html;
 var fs_1 = require("fs");
-function send_html(name) {
+function send_html(name, res, status) {
     return __awaiter(this, void 0, void 0, function () {
         var html_buffer, html_string;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, fs_1.readFileSync)("html/".concat(name))];
+                case 0: return [4 /*yield*/, (0, fs_1.readFileSync)("html/".concat(name, ".html"))];
                 case 1:
                     html_buffer = _a.sent();
                     html_string = "".concat(html_buffer);
-                    console.log(html_string);
+                    res.statusCode = status;
+                    res.setHeader('Content-Type', 'text/html');
+                    res.write(html_string);
+                    res.end();
                     return [2 /*return*/];
             }
         });

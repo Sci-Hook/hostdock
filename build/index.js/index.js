@@ -56,8 +56,6 @@ http.createServer(function (req, res) {
             switch (_a.label) {
                 case 0:
                     if (!req.headers.host) {
-                        console.log(1);
-                        (0, send_html_1.send_html)('errors/bad-request.html');
                         return [2 /*return*/, res.end()];
                     }
                     if (!(req.method && req.url)) return [3 /*break*/, 9];
@@ -73,6 +71,7 @@ http.createServer(function (req, res) {
                     return [3 /*break*/, 5];
                 case 4:
                     error_1 = _a.sent();
+                    (0, send_html_1.send_html)('/errors/host-not-exist', res, 400);
                     return [2 /*return*/];
                 case 5: return [4 /*yield*/, (0, client_1.send_request)({
                         method: req.method,

@@ -4,7 +4,7 @@ import { send_request } from './client';
 import { getHeaders } from './functions/get-headers';
 import { read_config } from './functions/read-config';
 import { find_host } from './functions/find-host';
-import { send_html } from './functions/get-html';
+import { send_html } from './functions/send-html';
 
 read_config('hosts.json')
 
@@ -19,8 +19,6 @@ http.createServer(function (req,res) {
     req.on('end', async () => {
         
         if (!req.headers.host) {
-            console.log(1);
-            send_html('errors/bad-request.html')
             return res.end(); 
         }
 
@@ -31,7 +29,7 @@ http.createServer(function (req,res) {
             try {
                 var host_datas = await find_host(req.headers.host);
             } catch (error) {
-                
+                send_html('/errors/host-not-exist',res,400);
                 return;
             }       
 
