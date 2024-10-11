@@ -1,0 +1,12 @@
+[
+    {
+        "host":"127.0.0.1",
+        "port":7070,
+        "header-hostname":"api.bilimetri.org"
+    },
+    {
+        "host":"127.0.0.1",
+        "port":8080,
+        "header-hostname":"bilimetri.org"
+    }
+]
